@@ -2,6 +2,10 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// feature modules
+import { HomeModule }    from './modules/home/home.module';
+import { ProductModule } from './modules/product/product.module';
+
 // components
 import { AppComponent }  from './app.component';
 
@@ -9,7 +13,9 @@ import { AppComponent }  from './app.component';
   // modules
   imports: [
     // angular modules
-    BrowserModule
+    BrowserModule,
+    // feature modules
+    HomeModule, ProductModule
   ],
   // components
   declarations: [ AppComponent ],
