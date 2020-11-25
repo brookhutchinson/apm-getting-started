@@ -1,6 +1,6 @@
 // angular modules
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 // components
 import { AppComponent }  from './app.component';
@@ -12,9 +12,7 @@ import { AppComponent }  from './app.component';
     BrowserModule
   ],
   // components
-  declarations: [
-    AppComponent
-  ],
+  declarations: [ AppComponent ],
   // bootstrap
   bootstrap: [ AppComponent ]
 })
