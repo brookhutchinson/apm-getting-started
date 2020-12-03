@@ -11,6 +11,8 @@ import { WelcomeComponent }       from './modules/home/components/welcome/welcom
 const routes: Routes = [
   // welcome route
   { path: 'welcome', component: WelcomeComponent },
+  // products route
+  { path: 'products', loadChildren: () => import('./modules/product/product.module').then(mod => mod.ProductModule) },
   // default route
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   // wildcard route
