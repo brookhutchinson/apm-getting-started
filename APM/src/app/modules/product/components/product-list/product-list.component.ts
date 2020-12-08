@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
   title: string = 'Product List';
 
+  imageWidth: number = 50;
+  imageMargin: number = 2;
+
   products: any[] = [
     {
       "productId": 1,
