@@ -1,6 +1,9 @@
 // components
 import { Component, OnInit } from '@angular/core';
 
+// interfaces
+import { Product }           from './../../../../interfaces/product';
+
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
@@ -15,7 +18,7 @@ export class ProductListComponent implements OnInit {
 
   listFilter: string = 'cart';
 
-  products: any[] = [
+  products: Product[] = [
     {
       "productId": 1,
       "productName": "Leaf Rake",
