@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
 
   imageWidth: number = 50;
   imageMargin: number = 2;
+  showImage: boolean = false;
 
   products: any[] = [
     {
@@ -68,4 +69,8 @@ export class ProductListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  toggleImage() {
+    this.showImage = !this.showImage;
+  }
 }
