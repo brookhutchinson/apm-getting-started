@@ -16,4 +16,8 @@ export class StarComponent implements OnChanges {
     // set star width value in px using rating
     this.starWidth = this.rating * 75 / 5;
   }
+
+  onClick() {
+    console.log(`This rating ${this.rating} was clicked`);
+  }
 }
