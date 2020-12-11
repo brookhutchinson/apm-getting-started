@@ -1,5 +1,6 @@
 // components
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import { EventEmitter, OnChanges }  from '@angular/core';
 
 @Component({
   selector: 'star',
@@ -8,6 +9,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class StarComponent implements OnChanges {
   @Input() rating: number;
+  @Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>();
+
   starWidth: number;
 
   constructor() {}
@@ -18,6 +21,10 @@ export class StarComponent implements OnChanges {
   }
 
   onClick() {
+    // write to console
     console.log(`This rating ${this.rating} was clicked`);
+
+    // raise event from StarComponent to ProductListComponent and pass message inside payload
+    this.ratingClicked.emit(`The rating ${this.rating} was clicked`);
   }
 }
