@@ -3,6 +3,9 @@ import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
 
+// components
+import { StarComponent }       from './components/star/star.component';
+
 // pipes
 import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
 
@@ -15,6 +18,8 @@ import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
   ],
   // components
   declarations: [
+    // components
+    StarComponent,
     // pipes
     ConvertToSpacesPipe
   ],
@@ -23,6 +28,8 @@ import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
     // angular modules
     CommonModule,
     FormsModule,
+    // components
+    StarComponent,
     // pipes
     ConvertToSpacesPipe
   ]
