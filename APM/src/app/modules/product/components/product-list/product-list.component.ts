@@ -38,12 +38,15 @@ export class ProductListComponent implements OnInit {
   // original products
   products: Product[];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService) {}
+
+  ngOnInit() {
+    // retrieve products
+    this.products = this.productService.getProducts()
+
     // set filtered products to original products
     this.filteredProducts = this.products;
   }
-
-  ngOnInit() {}
 
   onRatingClicked(message: string) {
     // set page title value to include message passed from StarComponent event
