@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 // interfaces
 import { Product }           from './../../../../interfaces/product';
 
+// services
+import { ProductService }    from './../../../../services/product.service';
+
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
@@ -86,7 +89,7 @@ export class ProductListComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private productService: ProductService) {
     // set filtered products to original products
     this.filteredProducts = this.products;
   }
