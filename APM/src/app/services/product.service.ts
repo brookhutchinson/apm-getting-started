@@ -16,7 +16,7 @@ import { tap }        from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  productUrl: string = 'assets/api/produts/products.json';
+  productUrl: string = 'assets/api/products/products.json';
 
   constructor(private http: HttpClient) {}
 

@@ -6,6 +6,7 @@ import { Product }           from './../../../../interfaces/product';
 
 // services
 import { ProductService }    from './../../../../services/product.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'product-list',
@@ -38,14 +39,26 @@ export class ProductListComponent implements OnInit {
   // original products
   products: Product[];
 
+  errorMessage: string;
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
     // retrieve products
-    this.products = this.productService.getProducts()
+    this.productService.getProducts().subscribe(
+      // on success
+      (products: Product[]) => {
+        // set original products to response
+        this.products = products;
 
-    // set filtered products to original products
-    this.filteredProducts = this.products;
+        // set filtered products to original products
+        this.filteredProducts = this.products;
+      },
+      // on error
+      (err: HttpErrorResponse) => {
+        this.errorMessage = err.message;
+      }
+    );
   }
 
   onRatingClicked(message: string) {
