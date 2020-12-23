@@ -1,6 +1,9 @@
 // components
 import { Component, OnInit } from '@angular/core';
 
+// services
+import { ActivatedRoute }   from '@angular/router';
+
 // interfaces
 import { Product }           from './../../../../interfaces/product';
 
@@ -13,7 +16,9 @@ export class ProductDetailComponent implements OnInit {
   pageTitle: string = 'Product Detail';
   product: Product;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let id = +this.route.snapshot.paramMap.get('id');
+  }
 }
