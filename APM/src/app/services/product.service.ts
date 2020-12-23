@@ -28,19 +28,20 @@ export class ProductService {
         tap((product) => {
           console.table(product);
         }),
+        // catch error
         catchError(this.handleError)
       );
   }
 
-  handleError(err: HttpErrorResponse) {
+  handleError(errorObject: HttpErrorResponse) {
     let errorMessage: string = '';
 
-    if (err.error instanceof ErrorEvent) {
+    if (errorObject.error instanceof ErrorEvent) {
       // client-side error
-      errorMessage = `Client-Side Error occurred: ${err.error.message}`;
+      errorMessage = `Client-Side Error occurred: ${errorObject.error.message}`;
     } else {
       // server-side error
-      errorMessage = `Server-Side Error occurred: Http Response Code ${err.status}, error message: ${err.message}`;
+      errorMessage = `Server-Side Error occurred: Http Response Code ${errorObject.status}, error message: ${errorObject.message}`;
     }
 
     // log error to console
