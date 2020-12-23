@@ -3,7 +3,7 @@ import { Injectable }        from '@angular/core';
 import { HttpClient }        from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 
-// interface
+// interfaces
 import { Product }           from './../interfaces/product';
 
 // rxjs
@@ -17,19 +17,24 @@ import { tap }               from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  productUrl: string = 'assets/api/products/products.json';
+  private productUrl: string = 'assets/api/products/products.json';
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productUrl)
       .pipe(
-        // log item to console
-        tap((product) => {
-          console.table(product);
-        }),
+        // log to console
+        tap((products) => console.table(products)),
         // catch error
         catchError(this.handleError)
+      );
+  }
+
+  getProduct(id: number): Observable<Product> {
+    return this.getProducts()
+      .pipe(
+        map((products: Product[]) => products.find(p => p.productId === id))
       );
   }
 
@@ -44,7 +49,7 @@ export class ProductService {
       errorMessage = `Server-Side Error occurred: Http Response Code ${errorObject.status}, error message: ${errorObject.message}`;
     }
 
-    // log error to console
+    // log to console
     console.error(errorMessage);
 
     // throw error

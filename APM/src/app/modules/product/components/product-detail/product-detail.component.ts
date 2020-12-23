@@ -1,42 +1,49 @@
-// components
+// component
 import { Component, OnInit } from '@angular/core';
 
 // services
-import { ActivatedRoute }   from '@angular/router';
-import { Router }           from '@angular/router';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
+import { ProductService }    from './../../../../services/product.service';
 
 // interfaces
 import { Product }           from './../../../../interfaces/product';
 
 @Component({
-  selector: 'product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  pageTitle: string = 'Product Detail';
+  pageTitle = 'Product Detail';
+  errorMessage = '';
   product: Product;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) {}
 
   ngOnInit() {
-    // get product id from activated route
-    let id = +this.route.snapshot.paramMap.get('id');
+    // get route paramater value
+    const param = this.route.snapshot.paramMap.get('id');
 
-    this.product = {
-      'productId': id,
-      'productName': 'Leaf Rake',
-      'productCode': 'GDN-0011',
-      'releaseDate': 'March 19, 2019',
-      'description': 'Leaf rake with 48-inch wooden handle',
-      'price': 19.95,
-      'starRating': 3.2,
-      'imageUrl': 'assets/images/leaf_rake.png'
+    if (param) {
+      // convert string to number
+      const id = +param;
+
+      // get product details for selected product
+      this.getProduct(id);
     }
   }
 
   onBack() {
     // navigate to ProductListComponent
     this.router.navigate(['/products']);
+  }
+
+  getProduct(id: number) {
+    this.productService.getProduct(id).subscribe(
+      // on success
+      (product) => this.product = product,
+      // on error
+      (errorObject) => this.errorMessage = errorObject.message
+    );
   }
 }
