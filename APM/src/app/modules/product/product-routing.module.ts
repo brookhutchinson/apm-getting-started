@@ -7,12 +7,15 @@ import { Routes }                 from '@angular/router';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductListComponent }   from './components/product-list/product-list.component';
 
+// guards
+import { ProductDetailGuard }     from './guards/product-detail.guard';
+
 // define routes
 const routes: Routes = [
   // product list route
   { path: 'products', component: ProductListComponent },
   // product detail route
-  { path: 'products/:id', component: ProductDetailComponent }
+  { path: 'products/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent }
 ];
 
 @NgModule({
