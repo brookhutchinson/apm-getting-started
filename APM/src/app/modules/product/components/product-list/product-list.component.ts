@@ -55,8 +55,9 @@ export class ProductListComponent implements OnInit {
         this.filteredProducts = this.products;
       },
       // on error
-      (err: HttpErrorResponse) => {
-        this.errorMessage = err.message;
+      (errorObject: HttpErrorResponse) => {
+        // set error message
+        this.errorMessage = errorObject.message;
       }
     );
   }
