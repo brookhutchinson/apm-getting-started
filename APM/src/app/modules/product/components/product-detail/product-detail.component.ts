@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 // services
 import { ActivatedRoute }   from '@angular/router';
+import { Router }           from '@angular/router';
 
 // interfaces
 import { Product }           from './../../../../interfaces/product';
@@ -16,9 +17,10 @@ export class ProductDetailComponent implements OnInit {
   pageTitle: string = 'Product Detail';
   product: Product;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    // get product id from activated route
     let id = +this.route.snapshot.paramMap.get('id');
 
     this.product = {
@@ -31,5 +33,10 @@ export class ProductDetailComponent implements OnInit {
       'starRating': 3.2,
       'imageUrl': 'assets/images/leaf_rake.png'
     }
+  }
+
+  onBack() {
+    // navigate to ProductListComponent
+    this.router.navigate(['/products']);
   }
 }
